@@ -7,7 +7,9 @@ export default defineConfig({
   plugins: [
     react({ jsxRuntime: 'automatic' }),
     checker({
-      typescript: { tsconfigPath: './tsconfig.json' }
+      typescript: {
+        tsconfigPath: './tsconfig.json',
+      }
     }),
   ],
   resolve: {
