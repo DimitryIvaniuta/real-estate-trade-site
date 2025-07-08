@@ -5,12 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
-    "tailwind:build": "tailwindcss -i ./src/index.css -o ./dist/tailwind.css --minify",
-    "lint": "eslint \"src/**/*.{ts,tsx}\" --max-warnings=0",
-    "format": "prettier --write \"src/**/*.{js,ts,tsx,css,md}\"",
+    "build": "vite build",
+    "preview": "vite preview",
     "test": "vitest",
-    "preview": "vite preview"
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "react": "^19.1.0",
@@ -43,6 +41,7 @@
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.35.1",
     "vite": "^7.0.3",
+    "vite-plugin-checker": "^0.10.0",
     "vitest": "^3.2.4"
   }
 }
