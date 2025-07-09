@@ -21,24 +21,24 @@ export const InvestmentSection: React.FC = () => (
             verdant surroundings…
           </p>
         </div>
-        <div className={styles.imageWrapper}>
+        <div className={styles.imageWrapper} >
           <img src={sectionImg1} alt="Exterior view of modern homes" />
         </div>
       </div>
 
       {/* Section 2: Image → Text */}
       <div className={`${styles.row} ${styles.reverse}`}>
-        <div className={styles.text}>
-          <p className={styles.subheading}>Comfort & Security</p>
-          <h2 className={styles.heading}>
-            Safe, Comfortable Living Spaces
-          </h2>
-          <p className={styles.body}>
-            Our gated neighborhood offers 24/7 security, high-performance…
-          </p>
-        </div>
         <div className={styles.imageWrapper}>
           <img src={sectionImg2} alt="Interior living space" />
+        </div>
+        <div className={styles.text} >
+            <p className={styles.subheading} style={{margin: '20px 0 0 20px'}}>Comfort & Security</p>
+            <h2 className={styles.heading} style={{marginLeft: '20px'}}>
+              Safe, Comfortable Living Spaces
+            </h2>
+            <p className={styles.body} style={{marginLeft: '20px'}}>
+              Our gated neighborhood offers 24/7 security, high-performance…
+            </p>
         </div>
       </div>
     </div>
