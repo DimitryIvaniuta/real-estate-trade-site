@@ -33,9 +33,7 @@ module.exports = {
           dark:   '#333333',               // hover / dark-mode variant
           'brand-dark': '#9e7c55',
           light: '#F5F5F5',
-          yellow: {
-            500: '#BA9770',
-          }
+          yellow: { 500: '#BA9770', 600: '#9E7C55' },
         },
       },
       fontFamily: {

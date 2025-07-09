@@ -18,5 +18,5 @@ body::-webkit-scrollbar {
   scroll-snap-type: y mandatory;
 }
 section {
-  scroll-snap-align: start;
+  scroll-margin-top: 65px;
 }
