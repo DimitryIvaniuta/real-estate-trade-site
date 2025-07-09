@@ -1,0 +1,88 @@
+import { Property, PropertyStatus } from '@/types/property';
+
+export const properties: Property[] = [
+  {
+    id: '1.1',
+    planThumb: '/assets/plans/1-1.jpg',
+    detailPdf: '/pdfs/1-1.pdf',
+    usableArea: 87.92,
+    status: PropertyStatus.SOLD,
+  },
+  {
+    id: '1.2',
+    planThumb: '/assets/plans/1-2.jpg',
+    detailPdf: '/pdfs/1-2.pdf',
+    usableArea: 87.92,
+    status: PropertyStatus.AVAILABLE,
+  },
+  {
+    id: '1.3',
+    planThumb: '/assets/plans/1-3.jpg',
+    detailPdf: '/pdfs/1-3.pdf',
+    usableArea: 87.92,
+    status: PropertyStatus.AVAILABLE,
+  },
+  {
+    id: '1.4',
+    planThumb: '/assets/plans/1-4.jpg',
+    detailPdf: '/pdfs/1-4.pdf',
+    usableArea: 87.92,
+    status: PropertyStatus.AVAILABLE,
+  },
+  {
+    id: '1.5',
+    planThumb: '/assets/plans/1-5.jpg',
+    detailPdf: '/pdfs/1-5.pdf',
+    usableArea: 87.92,
+    status: PropertyStatus.AVAILABLE,
+  },
+  {
+    id: '1.6',
+    planThumb: '/assets/plans/1-6.jpg',
+    detailPdf: '/pdfs/1-6.pdf',
+    usableArea: 87.92,
+    status: PropertyStatus.AVAILABLE,
+  },
+  {
+    id: '2.1',
+    planThumb: '/assets/plans/2-1.jpg',
+    detailPdf: '/pdfs/2-1.pdf',
+    usableArea: 87.92,
+    status: PropertyStatus.AVAILABLE,
+  },
+  {
+    id: '2.2',
+    planThumb: '/assets/plans/2-2.jpg',
+    detailPdf: '/pdfs/2-2.pdf',
+    usableArea: 87.92,
+    status: PropertyStatus.AVAILABLE,
+  },
+  {
+    id: '2.3',
+    planThumb: '/assets/plans/2-3.jpg',
+    detailPdf: '/pdfs/2-3.pdf',
+    usableArea: 87.92,
+    status: PropertyStatus.AVAILABLE,
+  },
+  {
+    id: '2.4',
+    planThumb: '/assets/plans/2-4.jpg',
+    detailPdf: '/pdfs/2-4.pdf',
+    usableArea: 87.92,
+    status: PropertyStatus.AVAILABLE,
+  },
+  {
+    id: '2.5',
+    planThumb: '/assets/plans/2-5.jpg',
+    detailPdf: '/pdfs/2-5.pdf',
+    usableArea: 87.92,
+    status: PropertyStatus.AVAILABLE,
+  },
+  {
+    id: '2.6',
+    planThumb: '/assets/plans/2-6.jpg',
+    detailPdf: '/pdfs/2-6.pdf',
+    usableArea: 87.92,
+    status: PropertyStatus.AVAILABLE,
+  },
+];

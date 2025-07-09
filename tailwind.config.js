@@ -28,11 +28,19 @@ module.exports = {
     extend: {
       colors: {
         brand: {
-          DEFAULT: '#BA9770',               // primary accent  (Domy Kopernika gold)
-          dark:   '#9e7c55',               // hover / dark-mode variant
+          DEFAULT: '#BA9770',               // primary accent  (Domy gold)
+          brand: '#BA9770',
+          dark:   '#333333',               // hover / dark-mode variant
+          'brand-dark': '#9e7c55',
+          light: '#F5F5F5',
+          yellow: {
+            500: '#BA9770',
+          }
         },
       },
       fontFamily: {
+        heading: ['Poppins', 'sans-serif'],
+        body:    ['Inter', 'sans-serif'],
         sans:    ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
         display: ['Poppins', 'ui-sans-serif', 'sans-serif'],
       },
