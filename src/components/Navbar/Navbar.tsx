@@ -28,7 +28,7 @@ export const Navbar: React.FC = () => {
     <header className={`${styles.header} ${scrolled ? styles.scrolled : styles.transparent}`}>
       <div className={styles.inner}>
         <a href="#hero" className={styles.logoLink}>
-          <img src={logo} alt="Domy Kopernika" className={styles.logo} />
+          <img src={logo} alt="Domy" className={styles.logo} />
         </a>
 
         <nav className={styles.nav}>
@@ -46,9 +46,9 @@ export const Navbar: React.FC = () => {
             ))}
           </ul>
 
-          <a href="tel:+48790770390" className={styles.callBtn}>
+          <a href="tel:+12432433543" className={styles.callBtn}>
             <PhoneIcon />
-            +48 790 770 390
+            +1 24 32 433 543
           </a>
         </nav>
       </div>

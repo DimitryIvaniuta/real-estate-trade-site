@@ -1,0 +1,93 @@
+/* InvestmentSection.module.scss */
+
+// 1. Wrapper with solid semi-opaque white
+.wrapper {
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 60px 16px;
+  overflow: hidden;
+
+  // 2. Pattern overlay in ::before, repeating at natural size
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('../../assets/bg-pattern.jpg');
+    background-repeat: repeat;
+    background-size: auto;
+    opacity: 0.1;
+    pointer-events: none;
+    z-index: 0;
+  }
+}
+
+// 3. Centered inner container
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+// 4. Row layout, top-aligned text
+.row {
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+  position: relative;
+
+  &.reverse {
+    flex-direction: row-reverse;
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+}
+
+.text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.subheading {
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #ba9770;
+  margin: 0;
+}
+
+.heading {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.75rem;
+  line-height: 1.25;
+  color: #222;
+  margin: 0;
+}
+
+.body {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #444;
+  margin: 0;
+}
+
+.imageWrapper {
+  flex: 1;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+}

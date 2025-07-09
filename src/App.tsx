@@ -1,7 +1,7 @@
 import React from 'react';
 import { Navbar }      from './components/Navbar';
 import { Hero }        from './components/Hero';
-import { Investment }  from './components/Investment';
+import { InvestmentSection }  from './components/InvestmentSection';
 import { Properties }  from './components/Properties';
 import { Gallery }     from './components/Gallery';
 import { Location }    from './components/Location';
@@ -14,7 +14,7 @@ function App() {
       <Navbar />
       <main>
         <Hero />
-        <Investment />
+        <InvestmentSection />
         <Properties />
         <Gallery />
         <Location />

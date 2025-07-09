@@ -10,7 +10,7 @@ export const Hero: React.FC = () => (
   >
     <div className={styles.overlay} />
     <div className={styles.content}>
-      <p className={styles.tagline}>Domy Kopernika</p>
+      <p className={styles.tagline}>Domy</p>
       <h1 className={styles.title}>
         Miejsce, w którym poczujesz się komfortowo i bezpiecznie
       </h1>
