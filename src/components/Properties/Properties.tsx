@@ -1,5 +1,5 @@
 import React from 'react';
-import { properties } from '@/data/properties';
+import { fileInfoById, properties, PROPERTIES_FILES_LIST } from '@/data/properties';
 import { PropertyStatus } from '@/types/property';
 import styles from './Properties.module.scss';
 
@@ -25,43 +25,81 @@ export const Properties: React.FC = () => (
           </p>
         </div>
       </div>
-
-      <div className={styles.grid}>
-        {properties.map((p) => (
-          <div key={p.id} className={styles.card}>
-            <div className={styles.thumbWrap}>
-              <img src={p.planThumb} alt={`Plan domu ${p.id}`} className={styles.thumb} />
-              <span
-                className={`${styles.badge} ${
-                  p.status === PropertyStatus.SOLD
-                    ? styles.sold
-                    : p.status === PropertyStatus.RESERVED
-                      ? styles.reserved
-                      : styles.available
-                }`}
-              >
-                {p.status === PropertyStatus.SOLD
-                  ? 'Sprzedane'
-                  : p.status === PropertyStatus.RESERVED
-                    ? 'Rezerwacja'
-                    : 'Dostępne'}
-              </span>
+{/*      <div className={styles.grid}>
+        {PROPERTIES_FILES_LIST.map(({ id, imageSrc, pdfSrc }) => (
+          <div key={id} className={styles.card}>
+            <div className={styles.imageWrapper}>
+              <img
+                src={imageSrc}
+                alt={`Plan domu ${id}`}
+                className={styles.image}
+                width={300}
+                height={250}
+              />
             </div>
-
             <div className={styles.info}>
-              <h3 className={styles.id}>Dom {p.id}</h3>
-              <p className={styles.area}>Pow. użytkowa: {p.usableArea} m²</p>
+              <h3 className={styles.id}>Dom {id}</h3>
               <a
-                href={p.detailPdf}
+                href={pdfSrc}
+                download={`Plan-${id}.pdf`}
+                className={styles.downloadBtn}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={styles.pdfBtn}
               >
                 Zobacz kartę lokalu
               </a>
             </div>
           </div>
         ))}
+      </div>*/}
+      <div className={styles.grid}>
+        {properties.map((p) => {
+          const imageSrc = `/assets/plans/${p.id}.jpg`;
+          const pdfSrc   = `/assets/pdfs/${p.id}.pdf`;
+          const fileInfo = fileInfoById(p.id);
+          return (
+            <article key={p.id} className={styles.card}>
+              <div className={styles.imageWrapper}>
+                <img
+                  src={fileInfo?.imageSrc}
+                  alt={`Plan domu ${p.id}`}
+                  className={styles.image}
+                  width={300}
+                  height={250}
+                />
+              </div>
+              <div className={styles.info}>
+                <div className={styles.topRow}>
+                  <h3 className={styles.id}>Dom {p.id}</h3>
+                  <span
+                    className={[
+                      styles.status,
+                      p.status === PropertyStatus.SOLD
+                        ? styles.sold
+                        : styles.available,
+                    ].join(' ')}
+                  >
+                    {p.status === PropertyStatus.SOLD
+                      ? 'Sprzedane'
+                      : 'Dostępne'}
+                  </span>
+                </div>
+                <p className={styles.area}>
+                  Powierzchnia: <strong>{p.usableArea} m²</strong>
+                </p>
+                <a
+                  href={fileInfo?.pdfSrc}
+                  download={`Plan-${p.id}.pdf`}
+                  className={styles.downloadBtn}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Zobacz kartę lokalu
+                </a>
+              </div>
+            </article>
+          );
+        })}
       </div>
     </div>
   </section>

@@ -37,6 +37,7 @@
 
   "include": [
     "src",                   /* your application code */
+    "src/env.d.ts",
     "src/test",              /* if you keep tests here */
     "vite.config.ts",        /* for checker plugin */
     "vitest.config.ts"       /* for Vitest auto-complete */

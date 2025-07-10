@@ -2,10 +2,41 @@ import { Property, PropertyStatus } from '@/types/property';
 
 type RawMap = Record<string, { default: string }>;
 
-// eagerly import all JPGs and PDFs
-const plans: RawMap = import.meta.globEager('../assets/plans/*.jpg');
-const pdfs: RawMap  = import.meta.globEager('../assets/pdfs/*.pdf');
+// 1) Glob all plan images, eager import their default URLs
+const plans = import.meta.glob<string>('../assets/plans/*.jpg', {
+  eager: true,
+  import: 'default',
+});
 
+// 2) Glob all PDFs
+const pdfs = import.meta.glob<string>('../assets/pdfs/*.pdf', {
+  eager: true,
+  import: 'default',
+});
+
+export interface PropertyList {
+  id: string;        // e.g. "1.1"
+  imageSrc: string;  // URL string from Vite
+  pdfSrc: string;    // URL string
+}
+
+export const PROPERTIES_FILES_LIST: PropertyList[] = Object.keys(plans)
+  .map((planPath) => {
+    const fileName = planPath.split('/').pop()!;
+    const id = fileName.replace(/\.jpg$/, '');
+
+    const imageSrc = plans[planPath];                            // Already a string
+    const pdfKey  = `../assets/pdfs/${id}.pdf`;
+    const pdfSrc  = pdfs[pdfKey] ?? '#';                         // Fallback if missing
+
+    return { id, imageSrc, pdfSrc };
+  })
+  .sort((a, b) => a.id.localeCompare(b.id));
+export const fileInfoById = (id: string):PropertyList | null => {
+  let pid = id.replace(/\./, '-');
+  const arr = PROPERTIES_FILES_LIST.filter(p=>p.id === pid);
+  return arr.length > 0? arr[0] : null;
+}
 export const properties: Property[] = [
   {
     id: '1.1',
