@@ -1,10 +1,16 @@
 import { Property, PropertyStatus } from '@/types/property';
 
+type RawMap = Record<string, { default: string }>;
+
+// eagerly import all JPGs and PDFs
+const plans: RawMap = import.meta.globEager('../assets/plans/*.jpg');
+const pdfs: RawMap  = import.meta.globEager('../assets/pdfs/*.pdf');
+
 export const properties: Property[] = [
   {
     id: '1.1',
-    planThumb: '/assets/plans/1-1.jpg',
-    detailPdf: '/pdfs/1-1.pdf',
+    planThumb: '../assets/plans/1-1.jpg',
+    detailPdf: '../pdfs/1-1.pdf',
     usableArea: 87.92,
     status: PropertyStatus.SOLD,
   },

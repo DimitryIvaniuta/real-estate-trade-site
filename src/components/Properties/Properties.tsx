@@ -1,36 +1,68 @@
 import React from 'react';
 import { properties } from '@/data/properties';
+import { PropertyStatus } from '@/types/property';
+import styles from './Properties.module.scss';
 
 export const Properties: React.FC = () => (
-  <section id="properties" className="w-full min-h-screen p-8 bg-light">
-    <h2 className="text-4xl font-heading text-center mb-8">Wybierz dom Twoich marzeń</h2>
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-      {properties.map((p) => (
-        <article key={p.id} className="bg-white rounded overflow-hidden shadow">
-          <img src={p.planThumb} alt={`Plan ${p.id}`} className="w-full h-40 object-cover" />
-          <div className="p-4">
-            <div className="flex justify-between items-center mb-2">
-              <h3 className="font-heading text-xl">{p.id}</h3>
+  <section id="properties" className={styles.section}>
+    <div className={styles.wrapper}>
+      <div className={styles.inner}>
+        <p className={styles.subtitle}>Wybierz swój dom</p>
+        <h2 className={styles.title}>Wybierz dom Twoich inspiracji</h2>
+
+        <div className={styles.content}>
+          <p className={styles.lead}>
+            Każdy z naszych domów w Domach Kopernika to nie tylko funkcjonalne wnętrze, ale też prywatny ogródek, który wydłuża lato
+            i pozwala na relaks na świeżym powietrzu. W ofercie znajdziesz działki o zróżnicowanych wielkościach – od kameralnych ogródków
+            po większe tereny gotowe do własnej aranżacji zieleni czy placu zabaw dla dzieci.
+          </p>
+
+          <p className={styles.extra}>
+            Ogródki zostały przygotowane pod klucz: wytyczone ścieżki, podstawowe nasadzenia, instalacja nawadniająca
+            oraz taras wykończony drewnianymi deskami. Dzięki temu od pierwszego dnia możesz cieszyć się filiżanką kawy
+            na świeżym powietrzu albo zorganizować rodzinne spotkanie przy grillu. Już dziś sprawdź dostępne domy
+            i wybierz ten z ogródkiem idealnym dla Ciebie!
+          </p>
+        </div>
+      </div>
+
+      <div className={styles.grid}>
+        {properties.map((p) => (
+          <div key={p.id} className={styles.card}>
+            <div className={styles.thumbWrap}>
+              <img src={p.planThumb} alt={`Plan domu ${p.id}`} className={styles.thumb} />
               <span
-                className={`px-2 py-1 rounded text-sm ${
-                  p.status === 'sold' ? 'bg-red-500 text-white' : 'bg-green-500 text-white'
+                className={`${styles.badge} ${
+                  p.status === PropertyStatus.SOLD
+                    ? styles.sold
+                    : p.status === PropertyStatus.RESERVED
+                      ? styles.reserved
+                      : styles.available
                 }`}
               >
-                {p.status === 'sold' ? 'Sprzedane' : 'Dostępne'}
+                {p.status === PropertyStatus.SOLD
+                  ? 'Sprzedane'
+                  : p.status === PropertyStatus.RESERVED
+                    ? 'Rezerwacja'
+                    : 'Dostępne'}
               </span>
             </div>
-            <p className="mb-4">Powierzchnia użytkowa: <strong>{p.usableArea} m²</strong></p>
-            <a
-              href={p.detailPdf}
-              target="_blank"
-              rel="noopener"
-              className="block text-center bg-dark text-white py-2 rounded hover:bg-black transition"
-            >
-              Zobacz kartę lokalu
-            </a>
+
+            <div className={styles.info}>
+              <h3 className={styles.id}>Dom {p.id}</h3>
+              <p className={styles.area}>Pow. użytkowa: {p.usableArea} m²</p>
+              <a
+                href={p.detailPdf}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.pdfBtn}
+              >
+                Zobacz kartę lokalu
+              </a>
+            </div>
           </div>
-        </article>
-      ))}
+        ))}
+      </div>
     </div>
   </section>
 );
