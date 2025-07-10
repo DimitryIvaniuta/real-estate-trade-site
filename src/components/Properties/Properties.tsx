@@ -12,7 +12,7 @@ export const Properties: React.FC = () => (
 
         <div className={styles.content}>
           <p className={styles.lead}>
-            Każdy z naszych domów w Domach Kopernika to nie tylko funkcjonalne wnętrze, ale też prywatny ogródek, który wydłuża lato
+            Każdy z naszych domów w Domach to nie tylko funkcjonalne wnętrze, ale też prywatny ogródek, który wydłuża lato
             i pozwala na relaks na świeżym powietrzu. W ofercie znajdziesz działki o zróżnicowanych wielkościach – od kameralnych ogródków
             po większe tereny gotowe do własnej aranżacji zieleni czy placu zabaw dla dzieci.
           </p>
@@ -25,33 +25,6 @@ export const Properties: React.FC = () => (
           </p>
         </div>
       </div>
-{/*      <div className={styles.grid}>
-        {PROPERTIES_FILES_LIST.map(({ id, imageSrc, pdfSrc }) => (
-          <div key={id} className={styles.card}>
-            <div className={styles.imageWrapper}>
-              <img
-                src={imageSrc}
-                alt={`Plan domu ${id}`}
-                className={styles.image}
-                width={300}
-                height={250}
-              />
-            </div>
-            <div className={styles.info}>
-              <h3 className={styles.id}>Dom {id}</h3>
-              <a
-                href={pdfSrc}
-                download={`Plan-${id}.pdf`}
-                className={styles.downloadBtn}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Zobacz kartę lokalu
-              </a>
-            </div>
-          </div>
-        ))}
-      </div>*/}
       <div className={styles.grid}>
         {properties.map((p) => {
           const imageSrc = `/assets/plans/${p.id}.jpg`;

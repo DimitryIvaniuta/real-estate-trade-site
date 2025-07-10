@@ -1,0 +1,168 @@
+// Gallery.module.scss
+
+.gallery {
+  padding: 60px 24px;
+  background: #fff;
+}
+
+.innerheader {
+  width: 1000px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.inner {
+  width: auto;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.subtitle {
+  font-size: 0.875rem;
+  color: #ba9770;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 2rem;
+  color: #2a2a2a;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.text {
+  color: #555;
+  line-height: 1.6;
+  max-width: 1150px;
+  margin: 0 0 40px;
+  padding-left: 20px;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0; // align bar to the left of the text block
+    top: 0;
+    //transform: translateY(-50%);
+    width: 2px;
+    height: 100%;
+    background: #ba9770;
+  }
+}
+
+.swiper {
+  padding-bottom: 60px; // space for pagination
+}
+
+.swiper-slide {
+  width: 80vw !important;
+}
+
+.swiper-pagination {
+  bottom: 36px !important;   /* move bullets down */
+  width: auto !important;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.slide {
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.image {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+// optional: adjust navigation arrows
+.swiper-button-next,
+.swiper-button-prev {
+  color: #ba9770;
+  z-index: 10;
+}
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 1.5rem;     /* bigger arrows */
+}
+.swiper-pagination-bullet {
+  background: #ba9770;
+  opacity: 0.7;
+}
+
+.swiper-pagination-bullet-active {
+  opacity: 1;
+}
+
+.imageWrapper {
+  width: 100%;
+  //height: 60vh;
+  /* allow the image to size itself by its own aspect ratio */
+  display: block;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.imageWrapper img {
+  display: block;
+  width: 100%;
+
+  height: auto; /* preserve the image’s natural aspect ratio */
+  object-fit: contain; /* ensure no cropping—will letterbox if container is taller */
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+/* Lightbox overlay */
+.lightboxOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* Lightbox content wrapper */
+.lightboxContent {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+}
+
+/* Close button in top-right */
+.lightboxClose {
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  background: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0;
+}
+
+/* Full-size image */
+.lightboxImage {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}

@@ -1,21 +1,97 @@
-import React from 'react';
-import g1 from '@/assets/gallery1.jpg';
-import g2 from '@/assets/gallery2.jpg';
-import g3 from '@/assets/gallery3.jpg';
-import g4 from '@/assets/gallery4.jpg';
+import React, { useEffect, useState } from 'react';
+import { GALLERY_IMAGES } from '@/data/gallery';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import styles from './Gallery.module.scss';
 
-const IMAGES = [g1, g2, g3, g4];
+export const Gallery: React.FC = () => {
+  // lightbox state: URL of the clicked image (or null)
+  const [selected, setSelected] = useState<string | null>(null);
+  useEffect(() => {
+    if (!selected) return
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setSelected(null)
+      }
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [selected])
 
-export const Gallery: React.FC = () => (
-  <section id="gallery" className="w-full min-h-screen p-8">
-    <h2 className="text-4xl font-heading text-center mb-4">Galeria zdjęć Domów</h2>
-    <p className="text-center text-dark/70 mb-8">
-      W naszym projekcie postawiliśmy na proste linie...
-    </p>
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-      {IMAGES.map((src, i) => (
-        <img key={i} src={src} alt={`Galeria ${i+1}`} className="w-full h-64 object-cover rounded" loading="lazy" />
-      ))}
-    </div>
-  </section>
-);
+  return (
+    <section id="gallery" className={styles.gallery}>
+      <div className={styles.inner}>
+        <div className={styles.innerheader}>
+          <p className={styles.subtitle}>Zainspiruj się naturą</p>
+          <h2 className={styles.title}>Galeria Domów</h2>
+          <p className={styles.text}>
+            Zapraszamy do obejrzenia naszych realizacji – białe elewacje w otoczeniu zieleni,
+            duże przeszklenia wpuszczające światło oraz starannie zaprojektowane tarasy.
+            Każde zdjęcie to przykład połączenia minimalistycznej architektury z komfortem
+            codziennego życia.
+          </p>
+        </div>
+
+        <Swiper
+          modules={[Navigation, Pagination, Autoplay]}
+          navigation
+          pagination={{ clickable: true }}
+          loop
+          autoplay={{ delay: 3000, disableOnInteraction: false }}
+          spaceBetween={20}
+          slidesPerView={1.03}
+          breakpoints={{
+            640: { slidesPerView: 1.3 },
+            768: { slidesPerView: 2 },
+            1024: { slidesPerView: 3 },
+          }}
+        >
+          {GALLERY_IMAGES.map((img, idx) => (
+            <SwiperSlide key={idx}>
+              <div
+                className={styles.imageWrapper}
+                onClick={() => setSelected(img.src)}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => e.key === 'Enter' && setSelected(img.src)}
+
+              >
+                <img src={img.src} alt={img.alt} className={styles.image} />
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+
+        {selected && (
+          <div
+            className={styles.lightboxOverlay}
+            onClick={() => setSelected(null)}
+          >
+            <div
+              className={styles.lightboxContent}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                className={styles.lightboxClose}
+                onClick={() => setSelected(null)}
+                aria-label="Zamknij podgląd"
+              >
+                ×
+              </button>
+              <img
+                src={selected}
+                alt="Pełny podgląd"
+                className={styles.lightboxImage}
+              />
+            </div>
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
+
+export default Gallery;

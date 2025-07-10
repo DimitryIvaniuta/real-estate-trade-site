@@ -27,7 +27,7 @@ export const InvestmentSection: React.FC = () => (
               W procesie projektowania priorytetem były dla nas detale: energooszczędne rozwiązania grzewcze, ekologiczne materiały
               izolacyjne, duże przeszklenia gwarantujące doskonałe doświetlenie pomieszczeń oraz starannie dobrane wykończenia.
               Na zewnątrz każdy dom ma własne miejsce parkingowe, a ogródki zostały przygotowane pod indywidualne aranżacje.
-              Taka troska o każdy etap realizacji sprawia, że Domy Kopernika to miejsce, które można od razu nazwać domem.
+              Taka troska o każdy etap realizacji sprawia, że Domy to miejsce, które można od razu nazwać domem.
             </p>
           </div>
         </div>
