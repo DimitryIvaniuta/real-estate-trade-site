@@ -10,7 +10,7 @@ const SECTIONS = [
   { id: 'properties', label: 'Domy' },
   { id: 'gallery',    label: 'Galeria' },
   { id: 'location',   label: 'Lokalizacja' },
-  { id: 'company',    label: 'O firmie' },
+  { id: 'about',    label: 'O firmie' },
   { id: 'contact',    label: 'Umów się na spotkanie' },
 ];
 

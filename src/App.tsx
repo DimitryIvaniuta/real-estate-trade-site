@@ -7,6 +7,7 @@ import { Gallery }     from './components/Gallery';
 import { Location }    from './components/Location';
 import { Company }     from './components/Company';
 import { Contact }     from './components/Contact';
+import About from '@/components/About/About';
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
         <Properties />
         <Gallery />
         <Location />
-        <Company />
+        <About />
         <Contact />
       </main>
     </>
