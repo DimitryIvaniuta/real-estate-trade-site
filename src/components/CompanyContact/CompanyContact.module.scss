@@ -1,0 +1,74 @@
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  padding: 4rem 2rem;
+  gap: 2rem;
+}
+
+.info {
+  flex: 1 1 320px;
+  max-width: 480px;
+
+  .overline {
+    color: var(--gold);
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .title {
+    font-size: 2rem;
+    line-height: 1.3;
+    margin-bottom: 2rem;
+    color: var(--text-primary);
+  }
+
+  .block {
+    margin-bottom: 1.5rem;
+
+    .blockTitle {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+      color: var(--text-secondary);
+    }
+
+    .address {
+      font-style: normal;
+      line-height: 1.5;
+      color: var(--text-primary);
+    }
+
+    .link {
+      display: inline-block;
+      color: var(--link);
+      text-decoration: none;
+      font-weight: 500;
+      line-height: 1.5;
+      border-bottom: 1px dashed var(--link);
+      transition: color 0.2s;
+
+      &:hover {
+        color: var(--gold);
+        border-color: var(--gold);
+      }
+    }
+  }
+}
+
+.mapContainer {
+  flex: 1 1 320px;
+  min-width: 640px;
+  height: 50vh;
+  aspect-ratio: 16 / 9;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.map {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}

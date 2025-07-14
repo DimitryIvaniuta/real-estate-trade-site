@@ -18,10 +18,10 @@ export const ContactSection: React.FC = () => {
   }, [showPolicy])
 
   // controlled form fields
-  const [name, setName] = useState('Dzmitry Ivaniuta')
-  const [email, setEmail] = useState('dzmitry.ivaniuta.services@gmail.com')
-  const [phone, setPhone] = useState('+48 694 835 148')
-  const [message, setMessage] = useState('test message')
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [phone, setPhone] = useState('')
+  const [message, setMessage] = useState('')
   const [consent, setConsent] = useState(false)
   // validation errors
   const [emailError, setEmailError] = useState('')
@@ -42,7 +42,7 @@ export const ContactSection: React.FC = () => {
   }
   const validatePhone = () => {
     if (!phoneRegex.test(phone.trim())) {
-      setPhoneError('Telefon w formacie +48 600 700 800')
+      setPhoneError('Telefon w formacie +48 111 222 333')
     } else {
       setPhoneError('')
     }

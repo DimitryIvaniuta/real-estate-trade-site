@@ -12,6 +12,7 @@ const SECTIONS = [
   { id: 'location',   label: 'Lokalizacja' },
   { id: 'about',    label: 'O firmie' },
   { id: 'contact',    label: 'Umów się na spotkanie' },
+  { id: 'company-contact',    label: 'Kontakt' },
 ];
 
 export const Navbar: React.FC = () => {
