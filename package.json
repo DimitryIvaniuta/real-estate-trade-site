@@ -5,6 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "node ./dev-with-links.mjs",
+    "server": "node server/index.js",
+    "start:all": "concurrently \"pnpm run server\" \"pnpm run dev\"",
     "build": "vite build",
     "preview": "vite preview",
     "test": "vitest",

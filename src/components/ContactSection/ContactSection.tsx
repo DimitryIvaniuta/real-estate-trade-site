@@ -48,7 +48,6 @@ export const ContactSection: React.FC = () => {
     }
   }
 
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setStatus('submitting')
@@ -115,7 +114,7 @@ export const ContactSection: React.FC = () => {
             <div className={styles.row}>
               <div className={styles.fieldFull}>
                 <label htmlFor="message">Treść wiadomości</label>
-                <textarea id="message" name="message" rows={16} value={message}
+                <textarea id="message" name="message" rows={14} value={message}
                           onChange={e => setMessage(e.target.value)}
                           required />
               </div>

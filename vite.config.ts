@@ -24,8 +24,14 @@ export default defineConfig({
     emptyOutDir: true,
   },
   server: {
+    port: 5173,
     proxy: {
-      '/api': 'http://localhost:5173'
-    }
-  }
+      // any request starting with /api will be forwarded...
+      '/api': {
+        target: 'http://localhost:3001',   // <-- your Express backend
+        changeOrigin: true,
+        secure: false,
+      },
+    },
+  },
 });
