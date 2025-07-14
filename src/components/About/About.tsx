@@ -33,11 +33,11 @@ export const About: React.FC = () => (
 
       {/* Row 2: Text left, image right */}
       <div className={styles.row}>
-        <div className={styles.textWrapper}>
+        <div className={styles.textWrapper} style={{ marginTop: '2rem' }}>
           <p className={styles.subtitle}>Nasze wartości</p>
           <h2 className={styles.title}>Budujemy z myślą o Tobie</h2>
           <div className={styles.textBox}>
-            <p className={styles.text}>
+            <p className={styles.text} style={{paddingRight: 20}}>
               Stawiamy na transparentność i profesjonalizm: od jakości materiałów, przez
               terminowość realizacji, aż po obsługę klienta. Każdy dom projektujemy tak, aby
               był wygodny w użytkowaniu dziś i elastyczny na przyszłość – to nasza obietnica.
