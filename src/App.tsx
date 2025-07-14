@@ -8,6 +8,7 @@ import { Location }    from './components/Location';
 import { Company }     from './components/Company';
 import { Contact }     from './components/Contact';
 import About from '@/components/About/About';
+import { ContactSection } from '@/components/ContactSection/ContactSection';
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
         <Gallery />
         <Location />
         <About />
-        <Contact />
+        <ContactSection />
       </main>
     </>
   );

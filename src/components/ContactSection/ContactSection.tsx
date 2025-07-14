@@ -1,57 +1,110 @@
-import React from 'react';
-import defaultSection2 from '@/assets/default-section2.jpg';
+import React, { useState } from 'react'
+import styles from './ContactSection.module.scss'
 
-export default function ContactSection() {
+type FormStatus = 'idle' | 'submitting' | 'success' | 'error'
+
+export const ContactSection: React.FC = () => {
+  const [status, setStatus] = useState<FormStatus>('idle')
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    setStatus('submitting')
+
+    const form = e.currentTarget as HTMLFormElement
+    const data = {
+      // name: form.name.value,
+      // email: form.email.value,
+      // phone: form.phone.value,
+      // message: form.message.value,
+      name: form.get('name')?.toString() ?? '',
+      email: form.get('email')?.toString() ?? '',
+      phone: form.get('phone')?.toString() ?? '',
+      message: form.get('message')?.toString() ?? '',
+    }
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      })
+      if (res.ok) {
+        setStatus('success')
+        form.reset()
+      } else {
+        throw new Error('Failed')
+      }
+    } catch {
+      setStatus('error')
+    }
+  }
+
   return (
-    <section
-      id="section2"
-      className="w-full h-screen flex items-center justify-center bg-cover bg-center scroll-snap-align-start"
-      style={{ backgroundImage: `url(${defaultSection2})` }}
-    >
-      <div className="bg-white/90 p-8 rounded-lg max-w-md w-full">
-        <h2 className="text-4xl font-semibold mb-4 text-center">Get in Touch</h2>
-        <form className="space-y-4">
-          <div>
-            <label className="block text-gray-700 mb-1" htmlFor="name">
-              Name
-            </label>
-            <input
-              id="name"
-              type="text"
-              className="w-full border border-gray-300 p-2 rounded"
-              placeholder="Your Name"
-            />
-          </div>
-          <div>
-            <label className="block text-gray-700 mb-1" htmlFor="email">
-              Email
-            </label>
-            <input
-              id="email"
-              type="email"
-              className="w-full border border-gray-300 p-2 rounded"
-              placeholder="you@example.com"
-            />
-          </div>
-          <div>
-            <label className="block text-gray-700 mb-1" htmlFor="message">
-              Message
-            </label>
-            <textarea
-              id="message"
-              rows={4}
-              className="w-full border border-gray-300 p-2 rounded"
-              placeholder="Your message"
-            />
-          </div>
-          <button
-            type="submit"
-            className="w-full bg-brand text-white py-3 rounded hover:bg-brand-dark transition"
-          >
-            Send Message
-          </button>
-        </form>
+    <section id="contact" className={styles.contact}>
+      <div className={styles.inner}>
+        <p className={styles.subtitle}>
+          Współpraca z nami to jasne zasady i pełne zaufanie.
+        </p>
+        <h2 className={styles.title}>
+          Umów się z nami na spotkanie<br/>
+          Budujemy relacje oparte na zaufaniu!
+        </h2>
+
+        {status === 'success' ? (
+          <p className={styles.thanks}>
+            Dziękujemy! Twoja wiadomość została wysłana. Skontaktujemy się wkrótce.
+          </p>
+        ) : (
+          <form className={styles.form} onSubmit={handleSubmit}>
+            <div className={styles.row}>
+              <div className={styles.field}>
+                <label htmlFor="name">Imię i nazwisko</label>
+                <input id="name" name="name" type="text" required />
+              </div>
+            </div>
+
+            <div className={styles.row}>
+              <div className={styles.field}>
+                <label htmlFor="email">Email</label>
+                <input id="email" name="email" type="email" required />
+              </div>
+              <div className={styles.field}>
+                <label htmlFor="phone">Telefon</label>
+                <input id="phone" name="phone" type="tel" required />
+              </div>
+            </div>
+
+            <div className={styles.row}>
+              <div className={styles.fieldFull}>
+                <label htmlFor="message">Treść wiadomości</label>
+                <textarea id="message" name="message" rows={5} required />
+              </div>
+            </div>
+
+            <div className={styles.checkboxRow}>
+              <input id="consent" name="consent" type="checkbox" required />
+              <label htmlFor="consent">
+                Wyrażam zgodę na przetwarzanie moich danych osobowych zgodnie z&nbsp;
+                <a href="/polityka-prywatnosci" target="_blank" rel="noopener">
+                  Polityką Prywatności
+                </a>.
+              </label>
+            </div>
+
+            {status === 'error' && (
+              <p className={styles.error}>Coś poszło nie tak — spróbuj ponownie.</p>
+            )}
+
+            <button
+              type="submit"
+              className={styles.submit}
+              disabled={status === 'submitting'}
+            >
+              {status === 'submitting' ? 'Wysyłanie...' : 'Wyślij zgłoszenie →'}
+            </button>
+          </form>
+        )}
       </div>
     </section>
-  );
+  )
 }

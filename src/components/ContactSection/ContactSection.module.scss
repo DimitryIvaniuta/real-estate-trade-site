@@ -1,0 +1,105 @@
+/* src/components/ContactSection/ContactSection.module.scss */
+$dark-bg: #222;
+$text-light: #f5f5f5;
+$text-muted: #ccc;
+$gold: #ba9770;
+$border: rgba(255,255,255,0.3);
+
+.contact {
+  background: $dark-bg;
+  color: $text-light;
+  padding: 80px 24px;
+}
+.inner {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+}
+.subtitle {
+  font-size: 1rem;
+  margin-bottom: 16px;
+  opacity: 0.8;
+}
+.title {
+  font-size: 2rem;
+  line-height: 1.3;
+  margin-bottom: 40px;
+}
+.thanks {
+  font-size: 1.25rem;
+  color: $gold;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+.field {
+  flex: 1 1 280px;
+  display: flex;
+  flex-direction: column;
+}
+.fieldFull {
+  flex: 1 1 100%;
+  display: flex;
+  flex-direction: column;
+}
+label {
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+  text-align: left;
+}
+input,
+textarea {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid $border;
+  color: $text-light;
+  padding: 8px 4px;
+  font-size: 1rem;
+  outline: none;
+  &::placeholder {
+    color: $text-muted;
+  }
+  &:focus {
+    border-bottom-color: $gold;
+  }
+}
+.checkboxRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.9rem;
+  text-align: left;
+  a { color: $gold; text-decoration: underline; }
+}
+.error {
+  color: #f55;
+  font-size: 0.9rem;
+}
+.submit {
+  align-self: center;
+  background: transparent;
+  border: 2px solid $gold;
+  color: $text-light;
+  padding: 12px 24px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  &:hover:not(:disabled) {
+    background: $gold;
+    color: $dark-bg;
+  }
+  &:disabled {
+    opacity: 0.6;
+    cursor: default;
+  }
+}
+@media (max-width: 480px) {
+  .row { flex-direction: column; }
+}
