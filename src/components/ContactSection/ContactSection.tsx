@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import styles from './ContactSection.module.scss'
+import PrivacyPolicy from '@/components/PrivacyPolicy/PrivacyPolicy';
 
 type FormStatus = 'idle' | 'submitting' | 'success' | 'error'
 
@@ -17,11 +18,36 @@ export const ContactSection: React.FC = () => {
   }, [showPolicy])
 
   // controlled form fields
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [phone, setPhone] = useState('')
-  const [message, setMessage] = useState('')
+  const [name, setName] = useState('Dzmitry Ivaniuta')
+  const [email, setEmail] = useState('dzmitry.ivaniuta.services@gmail.com')
+  const [phone, setPhone] = useState('+48 694 835 148')
+  const [message, setMessage] = useState('test message')
   const [consent, setConsent] = useState(false)
+  // validation errors
+  const [emailError, setEmailError] = useState('')
+  const [phoneError, setPhoneError] = useState('')
+
+  // email regex (simple)
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  // phone regex: +48 111 222 333 or digits/spaces/hyphens/parentheses
+  const phoneRegex = /^[+()\d\s-]{9,20}$/
+
+  // handle blur validations
+  const validateEmail = () => {
+    if (!emailRegex.test(email.trim())) {
+      setEmailError('Proszę podać prawidłowy adres email.')
+    } else {
+      setEmailError('')
+    }
+  }
+  const validatePhone = () => {
+    if (!phoneRegex.test(phone.trim())) {
+      setPhoneError('Telefon w formacie +48 600 700 800')
+    } else {
+      setPhoneError('')
+    }
+  }
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -61,25 +87,37 @@ export const ContactSection: React.FC = () => {
             <div className={styles.row}>
               <div className={styles.field}>
                 <label htmlFor="name">Imię i nazwisko</label>
-                <input id="name" name="name" type="text" required />
+                <input id="name" name="name" type="text" value={name}
+                       onChange={e => setName(e.target.value)}
+                       required />
               </div>
             </div>
 
             <div className={styles.row}>
               <div className={styles.field}>
                 <label htmlFor="email">Email</label>
-                <input id="email" name="email" type="email" required />
+                <input id="email" name="email" type="email" value={email}
+                       onChange={e => setEmail(e.target.value)}
+                       onBlur={validateEmail}
+                       required />
+                {emailError && <p className={styles.fieldError}>{emailError}</p>}
               </div>
               <div className={styles.field}>
                 <label htmlFor="phone">Telefon</label>
-                <input id="phone" name="phone" type="tel" required />
+                <input id="phone" name="phone" type="tel" value={phone}
+                       onChange={e => setPhone(e.target.value)}
+                       onBlur={validatePhone}
+                       required />
+                {phoneError && <p className={styles.fieldError}>{phoneError}</p>}
               </div>
             </div>
 
             <div className={styles.row}>
               <div className={styles.fieldFull}>
                 <label htmlFor="message">Treść wiadomości</label>
-                <textarea id="message" name="message" rows={5} required />
+                <textarea id="message" name="message" rows={16} value={message}
+                          onChange={e => setMessage(e.target.value)}
+                          required />
               </div>
             </div>
 
@@ -113,7 +151,7 @@ export const ContactSection: React.FC = () => {
             <button
               type="submit"
               className={styles.submit}
-              disabled={status === 'submitting'}
+              disabled={!consent || status === 'submitting'}
             >
               {status === 'submitting'
                 ? 'Wysyłanie...'
@@ -122,36 +160,7 @@ export const ContactSection: React.FC = () => {
           </form>
         )}
 
-        {showPolicy && (
-          <div
-            className={styles.modalOverlay}
-            onClick={() => setShowPolicy(false)}
-          >
-            <div
-              className={styles.modalContent}
-              onClick={e => e.stopPropagation()}
-              role="dialog"
-              aria-modal="true"
-              aria-labelledby="policy-title"
-            >
-              <button
-                className={styles.modalClose}
-                onClick={() => setShowPolicy(false)}
-                aria-label="Zamknij"
-              >
-                ×
-              </button>
-              <h3 id="policy-title" className={styles.modalTitle}>
-                Polityka Prywatności
-              </h3>
-              <div className={styles.modalBody}>
-                <p>
-                  Niniejsza Polityka Prywatności opisuje zasady przetwarzania danych ...
-                </p>
-              </div>
-            </div>
-          </div>
-        )}
+        <PrivacyPolicy isOpen={showPolicy} onClose={() => setShowPolicy(false)} />
       </div>
     </section>
   )

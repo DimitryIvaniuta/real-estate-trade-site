@@ -5,6 +5,8 @@
 html, body, #root {
   height: 100%;
   margin: 0;
+  font-family: DM Sans, sans-serif;
+  line-height: 170%;
 }
 body {
   scroll-behavior: smooth;
@@ -19,4 +21,29 @@ body::-webkit-scrollbar {
 }
 section {
   scroll-margin-top: 65px;
+}
+@media screen and (min-width: 1024px) {
+  body {
+    font-size: 18px;
+  }
+}
+
+:root {
+  --swiper-navigation-size: 44px;
+  --swiper-theme-color: #007aff;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
