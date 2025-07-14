@@ -1,39 +1,41 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styles from './ContactSection.module.scss'
 
 type FormStatus = 'idle' | 'submitting' | 'success' | 'error'
 
 export const ContactSection: React.FC = () => {
   const [status, setStatus] = useState<FormStatus>('idle')
+  const [showPolicy, setShowPolicy] = useState(false)
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  // Close modal on Escape
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && showPolicy) setShowPolicy(false)
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [showPolicy])
+
+  // controlled form fields
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [phone, setPhone] = useState('')
+  const [message, setMessage] = useState('')
+  const [consent, setConsent] = useState(false)
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setStatus('submitting')
-
-    const form = e.currentTarget as HTMLFormElement
-    const data = {
-      // name: form.name.value,
-      // email: form.email.value,
-      // phone: form.phone.value,
-      // message: form.message.value,
-      name: form.get('name')?.toString() ?? '',
-      email: form.get('email')?.toString() ?? '',
-      phone: form.get('phone')?.toString() ?? '',
-      message: form.get('message')?.toString() ?? '',
-    }
-
     try {
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
+        body: JSON.stringify({ name, email, phone, message }),
       })
       if (res.ok) {
         setStatus('success')
-        form.reset()
-      } else {
-        throw new Error('Failed')
-      }
+        setName(''); setEmail(''); setPhone(''); setMessage(''); setConsent(false)
+      } else throw new Error()
     } catch {
       setStatus('error')
     }
@@ -82,17 +84,30 @@ export const ContactSection: React.FC = () => {
             </div>
 
             <div className={styles.checkboxRow}>
-              <input id="consent" name="consent" type="checkbox" required />
+              <input
+                id="consent"
+                name="consent"
+                type="checkbox"
+                checked={consent}
+                onChange={e => setConsent(e.target.checked)}
+                required
+              />
               <label htmlFor="consent">
                 Wyrażam zgodę na przetwarzanie moich danych osobowych zgodnie z&nbsp;
-                <a href="/polityka-prywatnosci" target="_blank" rel="noopener">
+                <button
+                  type="button"
+                  className={styles.policyLink}
+                  onClick={() => setShowPolicy(true)}
+                >
                   Polityką Prywatności
-                </a>.
+                </button>.
               </label>
             </div>
 
             {status === 'error' && (
-              <p className={styles.error}>Coś poszło nie tak — spróbuj ponownie.</p>
+              <p className={styles.error}>
+                Coś poszło nie tak — spróbuj ponownie.
+              </p>
             )}
 
             <button
@@ -100,11 +115,46 @@ export const ContactSection: React.FC = () => {
               className={styles.submit}
               disabled={status === 'submitting'}
             >
-              {status === 'submitting' ? 'Wysyłanie...' : 'Wyślij zgłoszenie →'}
+              {status === 'submitting'
+                ? 'Wysyłanie...'
+                : 'Wyślij zgłoszenie →'}
             </button>
           </form>
+        )}
+
+        {showPolicy && (
+          <div
+            className={styles.modalOverlay}
+            onClick={() => setShowPolicy(false)}
+          >
+            <div
+              className={styles.modalContent}
+              onClick={e => e.stopPropagation()}
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="policy-title"
+            >
+              <button
+                className={styles.modalClose}
+                onClick={() => setShowPolicy(false)}
+                aria-label="Zamknij"
+              >
+                ×
+              </button>
+              <h3 id="policy-title" className={styles.modalTitle}>
+                Polityka Prywatności
+              </h3>
+              <div className={styles.modalBody}>
+                <p>
+                  Niniejsza Polityka Prywatności opisuje zasady przetwarzania danych ...
+                </p>
+              </div>
+            </div>
+          </div>
         )}
       </div>
     </section>
   )
 }
+
+export default ContactSection
