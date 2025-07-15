@@ -5,9 +5,9 @@ import React from 'react';
  */
 export const LinkedInIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
   <svg xmlns="http://www.w3.org/2000/svg"
-       width="17.5"
-       height="17.499"
-       viewBox="0 0 17.5 17.499"
+       viewBox="0 0 18 18"
+       width="20"
+       height="20"
        aria-label="Linkedin icon"
        {...props}
   >

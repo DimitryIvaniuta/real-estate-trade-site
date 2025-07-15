@@ -5,8 +5,8 @@ import React from 'react';
  */
 export const FacebookIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
   <svg xmlns="http://www.w3.org/2000/svg"
-       width="14.527"
-       height="27.124"
+       width="11"
+       height="16"
        viewBox="0 0 14.527 27.124"
        aria-label="Facebook icon"
        {...props}

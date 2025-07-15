@@ -7,7 +7,7 @@ export const YouTubeIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
   <svg xmlns="http://www.w3.org/2000/svg"
        width="27.825"
        height="19.560"
-       viewBox="0 0 27.825 19.564"
+       viewBox="0 -4 27.825 19.564"
        aria-label="Youtube icon"
        {...props}
   >

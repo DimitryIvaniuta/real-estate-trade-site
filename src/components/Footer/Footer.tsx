@@ -18,45 +18,41 @@ const NAV_ITEMS = [
 
 export const Footer: React.FC = () => (
   <footer className={styles.footer}>
-    {/* Left column */}
-    <div className={styles.column}>
+    <div className={styles.section}>
       <a href="/" className={styles.logoLink} aria-label="Home">
         <img src={logo} alt="Domy" className={styles.siteLogo} />
       </a>
-      <nav>
-        <ul className={styles.navList}>
-          {NAV_ITEMS.map((item) => (
-            <li key={item.href}>
-              <a href={item.href}>{item.label}</a>
-            </li>
-          ))}
-        </ul>
-      </nav>
+      <ul className={styles.nav}>
+        {NAV_ITEMS.map((item) => (
+          <li key={item.href}>
+            <a href={item.href}>{item.label}</a>
+          </li>
+        ))}
+      </ul>
     </div>
 
-    <div className={styles.separator} />
-
-    {/* Center column */}
-    <div className={styles.column}>
-      <p className={styles.overline}>Our Social Media</p>
+    <div className={styles.section}>
+      <p className={styles.title}>Our Social Media</p>
       <div className={styles.social}>
         <a href="https://facebook.com" aria-label="Facebook" target="_blank" rel="noopener">
-          <FacebookIcon className={styles.icon} />
+          <FacebookIcon />
         </a>
         <a href="https://linkedin.com" aria-label="LinkedIn" target="_blank" rel="noopener">
-          <LinkedInIcon className={styles.icon} />
+          <LinkedInIcon />
         </a>
         <a href="https://youtube.com" aria-label="YouTube" target="_blank" rel="noopener">
-          <YouTubeIcon className={styles.icon} />
+          <YouTubeIcon />
         </a>
       </div>
     </div>
 
-    <div className={styles.separator} />
-
-    {/* Right column */}
-    <div className={styles.column}>
-      <a href="https://youragency.com" target="_blank" rel="noopener" className={styles.agencyLink}>
+    <div className={styles.section}>
+      <a
+        href="https://youragency.com"
+        className={styles.agencyLink}
+        target="_blank"
+        rel="noopener"
+      >
         Agency
       </a>
       <p className={styles.byline}>Designed &amp; implemented by YourAgency</p>
