@@ -10,6 +10,7 @@ import { Contact }     from './components/Contact';
 import About from '@/components/About/About';
 import { CompanyContact } from '@/components/CompanyContact';
 import { ContactSection } from '@/components/ContactSection';
+import { Footer } from '@/components/Footer';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <About />
         <ContactSection />
         <CompanyContact />
+        <Footer />
       </main>
     </>
   );
